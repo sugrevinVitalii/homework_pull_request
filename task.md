@@ -62,5 +62,86 @@
  
  > git commit --help
 
+# Работа с командами git clone, git pull, git push & git remote
+
+**Перед началом работы необходимо:**
+
+1. создать новую папку для хранения и работы с репозиторием.
+
+2. Открыть visual studio code и открыть папку,
+3. зайти на гитхаб,
+4. найти нужный удаленный репозиторий,
+5. скопировать ссылку на клонирование,
+6. ввести > git clone и скопированную ссылку.
+
+PS F:\Git_vitalii\git_less_3> git clone https://github.com/GnuriaN/format-README
+Cloning into 'format-README'...
+remote: Enumerating objects: 217, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 217 (delta 4), reused 0 (delta 0), pack-reused 207 eceiving objects:  7Receiving objects:  74%
+Receiving objects: 100% (217/217), 56.17 KiB | 798.00 KiB/s, done.
+Resolving deltas: 100% (95/95), done.
+
+*Должно получиться примерно так.*
+
+7. После чего ввести команду 
+ > git status
+
+Получить:
+
+fatal: not a git repository (or any of the parent directories): .git
+
+...и подключить новую директорию
+
+ > cd new_direct
+
+*Можно начать набирать имя и нажать tab, git сам допишет имя.*
+
+PS F:\Git_vitalii\git_less_3> cd .\format-README\
+PS F:\Git_vitalii\git_less_3\format-README> git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+Либо, правой кнопкой мыши на новом файле и "открыть в новом терминале".
+
+Либо, при наборе команды PS F:\Git_vitalii\git_less_3> git clone https://github.com/GnuriaN/format-README
+добавить название новой папки, куда и будет происходить клонирование.
+
+## Создание нового удаленного репозитория.
+
+При создании нового репозитория нажать кнопку "new". Потом записать его имя и нажать "create repository".
+Чтобы обновить файл в удаленном репозитории используется команда:
+ > git push
+При этом, может потребоваться аунтефикация на сайте GitHub. В этом случае терминал зависнет до введения пароля на сайте.
+
+при невозможности подключится через Https, необходимо выполнить генерацию ссаш-ключей (ssh-key). Для этого используем команду:
+ > ssh-keygen -t rsa -C "user.name@mail.domain"
+Куда необходимо ввести свой логин от github.
+Если Visual Studio не понимает, то необходимо открыть другой терминал, например bash.
+При вводе команды будет предложено выбрать путь сохранения ключей и возможность ввести пин-коды для них. 
+Внимание! Пин-коды придется вводить при каждом обновлении удаленного репозитория.
+После этого заходим (на винде) Этот компьютер - Локальный диск С - Пользователи - "имя пользователя" - .ssh 
+Там включаем отображение скрытых файлов, выбираем файл id_rsa.pub , открываем его и копируем весь ряд символов с логином в конце.
+Потом GitHub.com
+Выбираем Account setting, SSH and GPG keys и нажимаем кнопку New SSH key. Там вводим имя ключа и в окно вставляем скопированные данные.
+
+## Слияние различных версий файла.
+
+При конфликтных ситуациях с версиями файлов, решать их (ситуации) по системе merge branch.
+
+ > git clone 
+не единственный способ связать удаленный репозиторий и локальный.
+Открываем необходимый файл в окне Visual Studio.
+Нажимаем на github создать новый репозиторий, называем его и копируем ссылку(link) в открывшемся окне.
+И вставляем ссылку в команду:
+ > git remote add origin "link"
+
+ > git push --set-upstream origin master
+Последнюю команду надо использовать и при создании новой ветки(branch_name) в старом файле.
+ > git push --set-upstream origin "branch_name"
+
 
 end
